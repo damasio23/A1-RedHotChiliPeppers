@@ -1,13 +1,14 @@
-from unittest import result
-import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 import requests
+import re
 
 count = 1
 tabela_geral = []
 #Extraindo as tabelas de todas as páginas
+print("tabela 1:")
 while count < 11:
+    print(str(count) + "/10")
     count=str(count)
     pagina = requests.get('https://www.last.fm/pt/music/Red+Hot+Chili+Peppers/+tracks?page='+count)
     soup = BeautifulSoup(pagina.text, "html.parser")
@@ -23,5 +24,7 @@ while count < 11:
     count = count + 1
     tabela_geral.append(tabela_df_ouvintes)
 tabela_geral_final = pd.concat(tabela_geral, ignore_index=True)
+tabela_geral_final.columns = ["Title", "Ouvintes"]
+tabela_geral_final["Title"].apply(lambda x: re.sub(r"\(.*?\)", "", re.sub('"', '', x)).strip())
 
-print(tabela_geral_final)
+tabela_geral_final.to_csv("../DataFrames/tabela_geral_final.csv")
