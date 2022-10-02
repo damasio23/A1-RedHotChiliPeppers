@@ -7,7 +7,7 @@ import pandas as pd
  """
 
 #Tabela com as informações. 
-df_excel = pd.read_excel("new_df.xls", index_col=[0,1])
+df_excel = pd.read_excel("../../DataFrames/new_df.xls", index_col=[0,1])
 
 #Todos os albuns.
 albuns = set(df_excel.index.get_level_values("Album"))

@@ -6,7 +6,7 @@ Músicas mais ouvidas e músicas menos ouvidas [em toda a história da banda ou 
  
 """
 ##Tabela com as informações. 
-df_excel = pd.read_excel("new_df.xls", index_col=[0,1])
+df_excel = pd.read_excel("../../DataFrames/new_df.xls", index_col=[0,1])
 
 #Função para retornar a música mais ouvida em toda a história da banda.
 def musica_mais_ouvida(DataFrame):
