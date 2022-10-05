@@ -1,4 +1,4 @@
-# Módulo de funções para a pergunta iii do grupo de perguntas 2
+""" Este é o módulo de funções para a pergunta iii do grupo de perguntas 2 """
 
 import numpy as np
 import pandas as pd
@@ -8,6 +8,14 @@ termos_invalidos = ['the', 'a', 'an', 'it', 'some', 'any', 'to', 'in', 'on', 'at
 
 ###################################################################################################################################
 def palavras_mais_comuns_letras_album(dataframe):
+    """Função que retorna as palavras mais comuns nas letras das músicas por álbum da banda
+
+    :param dataframe: Dataframe fonte
+    :type dataframe: pandas.core.frame.DataFrame
+    :return: Série com os álbuns da banda como chaves, e como valores, o dicionário com as palavras como chaves e as frequências como valores  
+    :rtype: pandas.core.series.Series
+    """
+    
     dataframe_copia = dataframe.copy()
     dataframe_copia.reset_index(inplace=True)
 
