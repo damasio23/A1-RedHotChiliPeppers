@@ -7,13 +7,15 @@ df.sort_values("Length", inplace=True)
 df = df.head(50)
 
 def seconds(time):
-    time = time.split(":")
-    seconds = int(time[0])*60 + int(time[1])
-    return seconds
+    try:
+      time = time.split(":")
+    except AttributeError:
+      return "O tipo do argumento deve ser uma string"
+    else:
+        seconds = int(time[0])*60 + int(time[1])
+        return seconds
 
 df["Length"] = df["Length"].apply(seconds)
-
-print(df["Length"])
 
 sns.set_theme(style="whitegrid")
 

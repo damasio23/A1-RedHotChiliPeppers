@@ -8,8 +8,6 @@ f, ax = plt.subplots(figsize=(6, 15))
 
 df = pd.read_csv("../../DataFrames/premios.csv", index_col=[0,1])
 
-print(df.sum(axis=1))
-
 def peso(x):
     x.iat[1] *= 2
     x.iat[2] *= 3

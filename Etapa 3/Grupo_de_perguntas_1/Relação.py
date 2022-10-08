@@ -1,7 +1,6 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
 
 def seconds(time):
     time = time.split(":")
@@ -16,12 +15,9 @@ f, ax = plt.subplots(figsize=(7, 7))
 
 df["Length"] = df["Length"].apply(seconds)
 
-print(df["Ouvintes"]/np.linalg.norm(df["Ouvintes"]))
-
 sns.set_color_codes("pastel")
 sns.scatterplot(data=df,y=df["Ouvintes"], x=df["Length"])
 
-#ax.legend(loc="upper right", frameon=True)
 ax.set(xlabel="Duração", ylabel="Popularidade")
 
-plt.show()
+plt.savefig('../../Plots/RelaçãoPopularidadeDuração.png', bbox_inches="tight")
