@@ -108,3 +108,12 @@ def palavras_mais_comuns_letras_album(dataframe):
     serie_palavras_mais_frequentes = pd.Series(dict_palavras_mais_frequentes)
     return serie_palavras_mais_frequentes
 ###################################################################################################################################
+
+# Dataframe com os dados necessários
+df = pd.read_excel("DataFrames/new_df.xls", index_col=[0,1])
+
+# Exemplo de funcionamento
+print('#'*50)
+print("Palavras mais comuns nas letras das músicas por álbum\n")
+print(palavras_mais_comuns_letras_album(df))
+print('#'*50)
