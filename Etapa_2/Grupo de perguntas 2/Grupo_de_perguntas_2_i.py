@@ -72,10 +72,11 @@ def palavras_mais_comuns_titulos_albuns(dataframe):
 
 ###################################################################################################################################
 
-import sys
-sys.path.insert(1, '../../Etapa_1')
+# Dataframe com os dados necessários
+df = pd.read_excel("DataFrames/new_df.xls", index_col=[0,1])
 
-from Etapa_1 import merge
-
-df = merge.new_df
-print(df)
+# Exemplo de funcionamento
+print('#'*50)
+print("Palavras mais comuns nos títulos dos álbuns\n")
+print(palavras_mais_comuns_titulos_albuns(df))
+print('#'*50)
