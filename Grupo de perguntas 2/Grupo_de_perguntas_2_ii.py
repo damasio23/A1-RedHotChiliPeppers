@@ -8,27 +8,38 @@ termos_invalidos = ['the', 'a', 'an', 'it', 'some', 'any', 'to', 'in', 'on', 'at
 
 ###################################################################################################################################
 def palavras_mais_comuns_titulos_musicas(dataframe):
-    """Função que retorna as palavras mais comuns nos títulos das músicas da banda
+    """Função que retorna as palavras mais comuns nos títulos das músicas da banda, isto é, as que tiverem frequência maior que a metade da frequência máxima.
+    Por exemplo, se a palavra mais comum aparecer 10 vezes, as mais comuns serão as que tiverem frequência maior que 5.
 
     :param dataframe: Dataframe fonte
     :type dataframe: pandas.core.frame.DataFrame
     :return: Série com as palavras mais comuns nos títulos das músicas como chave e as frequências como valores
     :rtype: pandas.core.series.Series
     """
-    
-    dataframe_copia = dataframe.copy()
-    dataframe_copia.reset_index(inplace=True)
-    nomes_musicas = list(set(dataframe_copia['Title']))
+    try:
+        dataframe_copia = dataframe.copy()
+        dataframe_copia.reset_index(inplace=True)
+    except AttributeError:
+        return "Erro na função palavras_mais_comuns_titulos_musicas(): O tipo do argumento deve ser um dataframe de pandas"
     
     # Lista com nomes dos álbums
-    nomes_musicas = list(set(dataframe_copia['Title']))
+    try:
+        nomes_musicas = list(set(dataframe_copia['Title']))
+    except KeyError:
+        return "Erro na função palavras_mais_comuns_titulos_musicas(): No dataframe informado não há nenhuma coluna com o nome 'Title'"
 
     musicas_palavras_separadas = []
     for musica in nomes_musicas:
-        musica.split()
-        for palavra in musica.split():
-            musicas_palavras_separadas.append(palavra.lower())
-
+        try:
+            if type(musica) != str:
+                raise AttributeError
+        except AttributeError:
+            return "Erro na função palavras_mais_comuns_titulos_musicas(): Os elementos da coluna Album devem ser strings"
+        else:
+            musica.split()
+            for palavra in musica.split():
+                musicas_palavras_separadas.append(palavra.lower())
+    
     musicas_palavras_separadas.sort()
     
     # Convertendo a lista musicas_palavras_separadas para série a fim de usar value_counts para contar os registros
@@ -52,6 +63,10 @@ def palavras_mais_comuns_titulos_musicas(dataframe):
             palavras_mais_frequentes[palavra[0]] = palavra[1]
             del maximo
     
-    serie_palavras_mais_frequentes = pd.Series(palavras_mais_frequentes)
-    return serie_palavras_mais_frequentes
+    # Consideração final
+    if palavras_mais_frequentes == dict():
+        return "Não há palavras significativamente frequentes nos títulos das músicas"
+    else:
+        serie_palavras_mais_frequentes = pd.Series(palavras_mais_frequentes)
+        return serie_palavras_mais_frequentes
 ###################################################################################################################################
