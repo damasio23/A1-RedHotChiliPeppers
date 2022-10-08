@@ -26,7 +26,8 @@ Pasta com os dataframes gerados na etapa 1
 - 4. Palavras mais comuns nas letras das músicas, em toda a discografia
 - 5. O título de um álbum é tema recorrente nas letras
 - 6. O título de uma música é tema recorrente nas letras?
-- **Grupo de Perguntas 3**: Funções que respondem o grupo de perguntas 3 da etapa 2.
+
+**Grupo de Perguntas 3**: Funções que respondem o grupo de perguntas 3 da etapa 2.
 - 1. Álbum com mais músicas e álbum com menos músicas
 - 2. Álbum mais ouvido e álbum menos ouvido
 - 3. Média da popularidade das músicas e o desvio padrão
