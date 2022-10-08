@@ -31,8 +31,6 @@ Pasta com os dataframes gerados na etapa 1
 - 1. Álbum com mais músicas e álbum com menos músicas
 - 2. Álbum mais ouvido e álbum menos ouvido
 - 3. Média da popularidade das músicas e o desvio padrão
-### main.py
-Testa as funções da etapa 2.
 
 ## Etapa 3
 ### Plots
