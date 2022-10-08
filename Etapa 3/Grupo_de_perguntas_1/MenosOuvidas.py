@@ -16,3 +16,5 @@ sns.barplot(data=df["Ouvintes"], y=df.index.get_level_values(1), x=df["Ouvintes"
 
 ax.legend( loc="upper right", frameon=True)
 ax.set(xlim=(0, 90000),ylabel="", xlabel="Os 50 titulos menos ouvidos")
+
+plt.savefig('../../Plots/MenosOuvidas.png', bbox_inches="tight")

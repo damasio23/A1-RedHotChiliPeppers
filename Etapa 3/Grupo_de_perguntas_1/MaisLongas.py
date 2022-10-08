@@ -13,8 +13,6 @@ def seconds(time):
 
 df["Length"] = df["Length"].apply(seconds)
 
-print(df["Length"])
-
 sns.set_theme(style="whitegrid")
 
 f, ax = plt.subplots(figsize=(6, 15))

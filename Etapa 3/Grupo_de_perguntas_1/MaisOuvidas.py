@@ -5,7 +5,6 @@ import pandas as pd
 df = pd.read_excel("../../DataFrames/new_df.xls", index_col=[0,1])
 df.sort_values("Ouvintes", inplace=True, ascending=False)
 df = df.head(50)
-print(df["Ouvintes"])
 
 sns.set_theme(style="whitegrid")
 

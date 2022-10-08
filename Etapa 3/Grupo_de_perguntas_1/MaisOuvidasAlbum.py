@@ -16,3 +16,5 @@ sns.barplot(data=df["Ouvintes"],y=df["Album"] + ":\n" + df["Title"], x=df["Ouvin
 
 ax.legend( loc="lower right", frameon=True)
 ax.set(xlim=(0, 2000000),ylabel="", xlabel="Musicas mais ouvidas de cada album")
+
+plt.savefig('../../Plots/MaisOuvidasPorAlbum.png', bbox_inches="tight")
