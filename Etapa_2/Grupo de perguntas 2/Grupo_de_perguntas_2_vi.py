@@ -190,3 +190,12 @@ def recorrencia_titulos_musicas_na_letra(dataframe):
     serie_indices_recorrencias = pd.Series(indices_recorrencias)
     return serie_indices_recorrencias
 ###################################################################################################################################
+
+# Dataframe com os dados necessários
+df = pd.read_excel("DataFrames/new_df.xls", index_col=[0,1])
+
+# Exemplo de funcionamento
+print('#'*50)
+print("Recorrência do tema dos títulos das músicas nas letras\n")
+print(recorrencia_titulos_musicas_na_letra(df))
+print('#'*50)
