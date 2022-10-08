@@ -71,3 +71,11 @@ def palavras_mais_comuns_titulos_albuns(dataframe):
         return serie_palavras_mais_frequentes
 
 ###################################################################################################################################
+
+import sys
+sys.path.insert(1, '../../Etapa_1')
+
+from Etapa_1 import merge
+
+df = merge.new_df
+print(df)

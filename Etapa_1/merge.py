@@ -23,5 +23,3 @@ new_df = pd.DataFrame(index = index, data = {"Length":albums_df_eng["Length"].to
 new_df.loc[new_df.Ouvintes.isnull(), "Ouvintes"] = [31.0, 1968.0, 2739.0]
 
 new_df.to_excel("../DataFrames/new_df.xls")
-
-print(new_df)
