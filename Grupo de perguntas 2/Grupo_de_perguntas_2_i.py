@@ -8,26 +8,37 @@ termos_invalidos = ['the', 'a', 'an', 'it', 'some', 'any', 'to', 'in', 'on', 'at
 
 ###################################################################################################################################
 def palavras_mais_comuns_titulos_albuns(dataframe):
-    """Função que retorna as palavras mais comuns nos títulos dos álbuns da banda
+    """Função que retorna as palavras mais comuns nos títulos dos álbuns da banda, isto é, as que tiverem frequência maior ou igual a metade da frequência máxima.
+    Por exemplo, se a palavra mais comum aparecer 10 vezes, as mais comuns serão as que tiverem frequência maior ou igual a 5.
 
     :param dataframe: Dataframe fonte
     :type dataframe: pandas.core.frame.DataFrame
-    :return: Série com as palavras mais comuns como índice e as frequências como valores
+    :return: Série com 
     :rtype: pandas.core.series.Series
     """
-    
-    dataframe_copia = dataframe.copy()
-    dataframe_copia.reset_index(inplace=True)
-    nomes_albuns = list(set(dataframe_copia['Album']))
+    try:
+        dataframe_copia = dataframe.copy()
+        dataframe_copia.reset_index(inplace=True)
+    except AttributeError:
+        return "Erro na função palavras_mais_comuns_titulos_albuns(): O tipo do argumento deve ser um dataframe de pandas"
     
     # Lista com nomes dos álbums
-    nomes_albuns = list(set(dataframe_copia['Album']))
-
+    try:
+        nomes_albuns = list(set(dataframe_copia['Album']))
+    except KeyError:
+        return "Erro na função palavras_mais_comuns_titulos_albuns(): No dataframe informado não há nenhuma coluna com o nome 'Album'"
+    
     albuns_palavras_separadas = []
     for album in nomes_albuns:
-        album.split()
-        for palavra in album.split():
-            albuns_palavras_separadas.append(palavra.lower())
+        try:
+            if type(album) != str:
+                raise AttributeError
+        except AttributeError:
+            return "Erro na função palavras_mais_comuns_titulos_albuns(): Os elementos da coluna Album devem ser strings"
+        else:
+            album.split()
+            for palavra in album.split():
+                albuns_palavras_separadas.append(palavra.lower())
 
     albuns_palavras_separadas.sort()
     
@@ -35,7 +46,7 @@ def palavras_mais_comuns_titulos_albuns(dataframe):
     serie_palavras_albuns = pd.Series(albuns_palavras_separadas)
     
     # Utilizando value_counts, temos uma série que informa as palavras mais frequentes
-    frequencia_palavras = dict(pd.Index(serie_palavras_albuns).value_counts())
+    frequencia_palavras = dict(pd.Series(serie_palavras_albuns).value_counts())
     
     # Filtrando as palavras válidas (aquelas que não estão na lista de termos_invalidos)
     palavras_validas = dict()
@@ -52,6 +63,11 @@ def palavras_mais_comuns_titulos_albuns(dataframe):
             palavras_mais_frequentes[palavra[0]] = palavra[1]
             del maximo
     
-    serie_palavras_mais_frequentes = pd.Series(palavras_mais_frequentes)
-    return serie_palavras_mais_frequentes
+    # Consideração final
+    if palavras_mais_frequentes == dict():
+        return "Não há palavras significativamente frequentes nos títulos dos álbuns analisados"
+    else:
+        serie_palavras_mais_frequentes = pd.Series(palavras_mais_frequentes, dtype=object)
+        return serie_palavras_mais_frequentes
+
 ###################################################################################################################################
